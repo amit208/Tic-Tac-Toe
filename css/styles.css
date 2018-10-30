@@ -20,8 +20,45 @@ header h1 {
     text-align: center;
 }
 
+#players {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    margin: 1.5em auto;
+}
+
+.player {
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.active {
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+    0% {background-color: transparent;}
+    50% {
+        background-color: yellowgreen;
+        box-shadow: 0 0 24px yellowgreen;
+        }
+    100% {background-color: transparent;}
+}
+
+.player p {
+    font-family: 'Comfortaa', cursive;
+    font-size: 2em;
+    color: #2b2b2b;
+    margin: 0;
+    padding: 8px;
+}
+
 main {
-    padding-top: 40px;
+    /* padding-top: 40px; */
 }
 
 #box-container {

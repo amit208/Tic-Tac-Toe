@@ -12,7 +12,7 @@ body {
     position: absolute;
     background-image: linear-gradient(to bottom, skyblue, rgb(135, 178, 235));
     width: 400px;
-    height: 300px;
+    /* height: 300px; */
     border-top: 1px solid rgba(255, 255, 255, 0.6);
     border-left: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 4px;
@@ -20,6 +20,11 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    padding-bottom: 3em;
+}
+
+#startingModal > div {
+    width: 100%;
 }
 
 #startingModal p {

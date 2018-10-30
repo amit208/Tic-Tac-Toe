@@ -66,7 +66,7 @@ header h1 {
 #players {
     display: flex;
     justify-content: space-between;
-    width: 30vw;
+    width: 60vw;
     margin: 1.5em auto;
 }
 

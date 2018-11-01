@@ -10,23 +10,27 @@
 </head>
 <body>
 
-    <section id="startingModal">
-        <div id="firstStartingModal">
-            <p>Play With ?</p>
-            <div class="btnContainer">
-                <button type="button" vlaue="friend" id="friend">Friend</button>
-                <button type="button" vlaue="computer" id="computer">Computer</button>
+    <!-- This div will be used to give semitransparent background color to the cards if the cards are visible-->
+    <div class="backgroundForCards semiTransparentBg"></div>
+    <div class="threeDSpaceForCard">
+        <div class="cards" id="startingModal">
+            <div class="card frontCard" id="firstStartingModal">
+                <p>Play With ?</p>
+                <div class="btnContainer">
+                    <button type="button" vlaue="friend" id="friend">Friend</button>
+                    <button type="button" vlaue="computer" id="computer">Computer</button>
+                </div>
+            </div>
+    
+            <div class="card backCard" id="SecondStartingModal">
+                <p>Choose your symbol</p>
+                <div class="btnContainer">
+                    <button type="button" vlaue="X" id="cross">Cross - X</button>
+                    <button type="button" vlaue="O" id="ring">Ring - O</button>
+                </div>
             </div>
         </div>
-
-        <!-- <div id="SecondStartingModal">
-            <p>Choose your symbol</p>
-            <div class="btnContainer">
-                <button type="button" vlaue="X" id="cross">Cross - X</button>
-                <button type="button" vlaue="O" id="ring">Ring - O</button>
-            </div>
-        </div> -->
-    </section>
+    </div>
 
     <header>
         <h1>Tic-Tac-Toe</h1>
@@ -43,7 +47,7 @@
     </section>
 
     <main>
-        <div id="box-container">
+        <div id="boxContainer">
             <div id="box1" class="box"></div>
             <div id="box2" class="box"></div>
             <div id="box3" class="box"></div>

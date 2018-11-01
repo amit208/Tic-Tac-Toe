@@ -38,10 +38,10 @@ function closeCard(event) {
     
     //This code will change the player name according to the buttons clicked on the first card
     if (valueOfFrontCard === "friend") {
-        document.querySelector("#player1 p").innerHTML = `Player - ${symbolOfPlayer1}`;
-        document.querySelector("#player2 p").innerHTML = `Player - ${symbolOfPlayer2}`;
+        document.querySelector("#player1 p").innerHTML = `You - ${symbolOfPlayer1}`;
+        document.querySelector("#player2 p").innerHTML = `Friend - ${symbolOfPlayer2}`;
     } else {
-        document.querySelector("#player1 p").innerHTML = `Player - ${symbolOfPlayer1}`;
+        document.querySelector("#player1 p").innerHTML = `You - ${symbolOfPlayer1}`;
         document.querySelector("#player2 p").innerHTML = `Computer - ${symbolOfPlayer2}`;
     }
 

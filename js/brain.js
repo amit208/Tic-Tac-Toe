@@ -1,13 +1,22 @@
+// ================================
+// Two Players of the Game
+// ================================
+let player1 = {
+    name: "You"
+};   //Player1 will always be the user
+let player2 = {};   //player2 will always be the friend or computer
+// =================================
+
 // ===================================
 // This code will rotate the card if any of the buttons of the front card is clicked
 // ===================================
 const btnFriend = document.querySelector("#friend");
 const btnComputer = document.querySelector("#computer");
-let valueOfFrontCard = "";
+let valueOfFrontClickedBtn = "";
 
 // Flip Card function
 function flipCard(event) {
-    valueOfFrontCard = event.target.value;
+    valueOfFrontClickedBtn = event.target.value;    //Value of front clicked Btn
 
     document.querySelector(".cards").classList.toggle("is-flipped");
 }
@@ -23,32 +32,49 @@ btnComputer.addEventListener("click", flipCard);
 // ===========================================
 const btnCross = document.querySelector("#cross");
 const btnRing = document.querySelector("#ring");
-let valueOfBackCard;
+let valueOfBackClickedBtn;
 let symbol = ["O", "X"];
-let symbolOfPlayer1;    //Player1 will always be the user
-let symbolOfPlayer2;    //player2 will always be the second player or computer
 
 // Close Card Function
 function closeCard(event) {
-    valueOfBackCard = event.target.value;
-    symbolOfPlayer1 = symbol[valueOfBackCard];
+    valueOfBackClickedBtn = event.target.value;   //Value of back Clicked button
+    player1.symbol = symbol[valueOfBackClickedBtn]; //Symbol of the player1
 
-    let indexOfRestSymbol = 1 - valueOfBackCard;
-    symbolOfPlayer2 = symbol[indexOfRestSymbol];
-    
-    //This code will change the player name according to the buttons clicked on the first card
-    if (valueOfFrontCard === "friend") {
-        document.querySelector("#player1 p").innerHTML = `You - ${symbolOfPlayer1}`;
-        document.querySelector("#player2 p").innerHTML = `Friend - ${symbolOfPlayer2}`;
+    let indexOfRestSymbol = 1 - valueOfBackClickedBtn;
+    player2.symbol = symbol[indexOfRestSymbol]; //Symbol of the player2
+
+    // This code will save the name of the second player
+    if (valueOfFrontClickedBtn === "friend") {
+        player2.name = "Friend";
     } else {
-        document.querySelector("#player1 p").innerHTML = `You - ${symbolOfPlayer1}`;
-        document.querySelector("#player2 p").innerHTML = `Computer - ${symbolOfPlayer2}`;
+        player2.name = "Computer";
     }
 
+    //This code will display the player and its respective code
+    document.querySelector("#player1 p").innerHTML = `${player1.name} - ${player1.symbol}`;
+    document.querySelector("#player2 p").innerHTML = `${player2.name} - ${player2.symbol}`;
+
+    // This code will hide the starting modal and the semi transparent background
     document.querySelector(".cards").style.display = "none";
     document.querySelector(".backgroundForCards").classList.toggle("semiTransparentBg");
+
+    // This code will add an active class to the player1
+    document.querySelector("#player1").classList.toggle("active");
 }
 
 btnCross.addEventListener("click", closeCard);
 btnRing.addEventListener("click", closeCard);
 // ===========================================
+
+// ============================================
+// This code will change the players turn each time it run
+// ============================================
+function currentPlayerIndicator() {
+    // This code will select the element with id Player1 and add a class "active" to it
+    document.querySelector("#player1").classList.toggle("active");
+
+    // This code will select the element with id Player2 and add a class "active" to it
+    document.querySelector("#player2").classList.toggle("active");
+
+
+}

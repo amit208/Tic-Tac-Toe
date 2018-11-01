@@ -3,7 +3,7 @@
 // ===================================
 const btnFriend = document.querySelector("#friend");
 const btnComputer = document.querySelector("#computer");
-const valueOfFrontCard;
+let valueOfFrontCard;
 
 btnFriend.addEventListener("click", flipCard);
 btnComputer.addEventListener("click", flipCard);
@@ -15,14 +15,13 @@ function flipCard(event) {
 // =========================================
 
 
-
 // ===========================================
 // This code will close the card if any of the button of the back of the card is clicked
 // and will also remove the semiTransparent black background
 // ===========================================
 const btnCross = document.querySelector("#cross");
 const btnRing = document.querySelector("#ring");
-const valueOfBackCard;
+let valueOfBackCard;
 
 btnCross.addEventListener("click", closeCard);
 btnRing.addEventListener("click", closeCard);

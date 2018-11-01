@@ -44,7 +44,7 @@ body {
 }
 
 .frontCard {
-    background-image: linear-gradient(to bottom, skyblue, rgb(135, 178, 235));
+    background-image: linear-gradient(to bottom, skyblue, rgb(59, 127, 252));
     border-top: 1px solid rgba(255, 255, 255, 0.6);
     border-left: 1px solid rgba(255, 255, 255, 0.6);
 }
@@ -114,6 +114,7 @@ header h1 {
     animation-name: blink;
     animation-duration: 2s;
     animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
 @keyframes blink {

@@ -5,6 +5,12 @@ let player1 = {name: "You"};   //Player1 will always be the user
 let player2 = {};   //player2 will always be the friend or computer
 // =================================
 
+// ====================================
+// This array will be used to check which box is clicked (i.e. filled with any symbol) or unclicked
+// ====================================
+let allBoxes = ["box1", "box2", "box3", "box4", "box5", "box6", "box7", "box8", "box9"];
+// =======================================
+
 // ===================================
 // This code will rotate the card if any of the buttons of the front card is clicked
 // ===================================
@@ -64,6 +70,7 @@ btnCross.addEventListener("click", closeCard);
 btnRing.addEventListener("click", closeCard);
 // ===========================================
 
+
 // ============================================
 // This code will change the players turn each time it run
 // ============================================
@@ -74,6 +81,7 @@ function currentPlayerIndicator() {
     // This code will select the element with id Player2 and add a class "active" to it
     document.querySelector("#player2").classList.toggle("active");
 }
+// ================================================
 
 
 // ==================================
@@ -84,25 +92,74 @@ const boxContainer = document.querySelector("#boxContainer");
 
 //This code will add an event listener to the boxContainer
 boxContainer.addEventListener("click", function(event) {
-    if (event.target.getAttribute("class") === "box") {
-        let currentElement = event.target;
-        let currentSymbolToApply;
+    let currentElement = event.target;
+    let currentSymbolToApply;
+    let idOfCurrentElement = currentElement.getAttribute("id");
+    let indexOfCurrentElementInArray = allBoxes.indexOf(idOfCurrentElement);
 
-        // This code will save the correct symbol to the variable currentSymbolToApply
-        if (document.querySelector("#player1").classList.contains("active")) {
-            currentSymbolToApply = player1.symbol;
-        } else {
-            currentSymbolToApply = player2.symbol;
+    // If the user is playing aganist the computer then this code will be used
+    if (valueOfFrontClickedBtn === "computer") {
+        //Here I have used a conditional if statement to confirm if the clicked target is the box or not.
+        //I am checking this because the event listener is applied to the parent of all the boxes and if any box is clicked twice then in the second time the box-container will be targetted.
+        //Because after the first click the pointer event will be disabled and so the parent will be get targetted
+        if (event.target.getAttribute("class") === "box") {
+    
+            // This code will save the correct symbol to the variable currentSymbolToApply
+            if (document.querySelector("#player1").classList.contains("active")) {
+                currentSymbolToApply = player1.symbol;
+                allBoxes.splice(indexOfCurrentElementInArray, 1);
+
+                //Correct symbol is feed to the current clicked box
+                currentElement.innerHTML = currentSymbolToApply;
+    
+                // This code will remove the click event listener from the current clicked element
+                currentElement.style.pointerEvents = "none";
+    
+                currentPlayerIndicator();
+
+                // After running the code above this function will run (COMPUTER'S MOVE)
+                setTimeout(function() {
+                    computersMove();
+                }, Math.floor(Math.random() * 800));
+            } 
+            
+            // This function will be used for the computer for computer's move
+            function computersMove() {
+                // This variable will be used to save a random index
+                let randomArrayIndex = Math.floor(Math.random() * allBoxes.length);
+                // This variable will be used to get the element at the random index
+                let randomElement = document.querySelector(`#${allBoxes[randomArrayIndex]}`);
+                
+                // This variable will apply the correct symbol to the randomElement
+                randomElement.innerHTML = player2.symbol;
+
+                // This code will remove the click event from the randomElement
+                randomElement.style.pointerEvents = "none";
+
+                // This code will remove the item at randomIndex of the Array
+                allBoxes.splice(randomArrayIndex, 1);
+
+                // This function will run the function currentPlayerIndicator which is used to shift turn each time it runs
+                currentPlayerIndicator();
+            }
+        }   
+    } else if (valueOfFrontClickedBtn === "friend") {
+        if (event.target.getAttribute("class") === "box") {
+    
+            // This code will save the correct symbol to the variable currentSymbolToApply
+            if (document.querySelector("#player1").classList.contains("active")) {
+                currentSymbolToApply = player1.symbol;
+            } else {
+                currentSymbolToApply = player2.symbol;
+            }
+    
+            //Correct symbol is feed to the current clicked box
+            currentElement.innerHTML = currentSymbolToApply;
+    
+            // This code will remove the click event listener from the current clicked element
+            currentElement.style.pointerEvents = "none";
+    
+            currentPlayerIndicator();
         }
-
-        //Correct symbol is feed to the current clicked box
-        currentElement.innerHTML = currentSymbolToApply;
-
-        // This code will remove the click event listener from the current clicked element
-        currentElement.style.pointerEvents = "none";
-
-        console.log(currentElement);
-
-        currentPlayerIndicator();
-    }   
+    }
 });

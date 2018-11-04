@@ -153,6 +153,7 @@ header h1 {
     height: 125px;
     box-sizing: border-box;
     font-size: 4em;
+    cursor: pointer;
 }
 
 #box1 {

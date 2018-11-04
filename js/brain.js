@@ -1,9 +1,7 @@
 // ================================
 // Two Players of the Game
 // ================================
-let player1 = {
-    name: "You"
-};   //Player1 will always be the user
+let player1 = {name: "You"};   //Player1 will always be the user
 let player2 = {};   //player2 will always be the friend or computer
 // =================================
 
@@ -55,7 +53,7 @@ function closeCard(event) {
     document.querySelector("#player2 p").innerHTML = `${player2.name} - ${player2.symbol}`;
 
     // This code will hide the starting modal and the semi transparent background
-    document.querySelector(".cards").style.display = "none";
+    document.querySelector(".threeDSpaceForCard").style.display = "none";
     document.querySelector(".backgroundForCards").classList.toggle("semiTransparentBg");
 
     // This code will add an active class to the player1
@@ -75,6 +73,36 @@ function currentPlayerIndicator() {
 
     // This code will select the element with id Player2 and add a class "active" to it
     document.querySelector("#player2").classList.toggle("active");
-
-
 }
+
+
+// ==================================
+// This code will insert the symbol in the boxes if clicked
+// ==================================
+// This code will select the boxContainer
+const boxContainer = document.querySelector("#boxContainer");
+
+//This code will add an event listener to the boxContainer
+boxContainer.addEventListener("click", function(event) {
+    if (event.target.getAttribute("class") === "box") {
+        let currentElement = event.target;
+        let currentSymbolToApply;
+
+        // This code will save the correct symbol to the variable currentSymbolToApply
+        if (document.querySelector("#player1").classList.contains("active")) {
+            currentSymbolToApply = player1.symbol;
+        } else {
+            currentSymbolToApply = player2.symbol;
+        }
+
+        //Correct symbol is feed to the current clicked box
+        currentElement.innerHTML = currentSymbolToApply;
+
+        // This code will remove the click event listener from the current clicked element
+        currentElement.style.pointerEvents = "none";
+
+        console.log(currentElement);
+
+        currentPlayerIndicator();
+    }   
+});
